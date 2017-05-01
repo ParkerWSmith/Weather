@@ -7,16 +7,10 @@ namespace WeatherApp
     {
         public static async Task<Weather> GetWeather(string zipCode)
         {
-            //Sign up for a free API key at http://openweathermap.org/appid
             string key = "b0f6583a877d6f9d042e76e575470acb";
             string queryString = "http://api.openweathermap.org/data/2.5/weather?zip="
                 + zipCode + ",&appid=" + key;
 
-            //Make sure developers running this sample replaced the API key
-            if (key == "YOUR API KEY HERE")
-            {
-                throw new ArgumentException("You must obtain an API key from openweathermap.org/appid and save it in the 'key' variable.");
-            }
 
             var results = await DataService.GetDataFromService(queryString).ConfigureAwait(false);
 
@@ -29,11 +23,11 @@ namespace WeatherApp
                 weather.Humidity = (string)results["main"]["humidity"] + " %";
                 weather.Visibility = (string)results["weather"][0]["main"];
 
-                DateTime time = new System.DateTime(1970, 1, 1, 0, 0, 0, 0);
+                DateTime time = DateTime.Now;
                 DateTime sunrise = time.AddSeconds((double)results["sys"]["sunrise"]);
                 DateTime sunset = time.AddSeconds((double)results["sys"]["sunset"]);
-                weather.Sunrise = sunrise.ToString() + " UTC";
-                weather.Sunset = sunset.ToString() + " UTC";
+                weather.Sunrise = sunrise.ToString() + " CST";
+                weather.Sunset = sunset.ToString() + " CST";
                 return weather;
             }
             else
