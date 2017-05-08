@@ -12,8 +12,6 @@
 
         public Weather()
         {
-            //Because labels bind to these values, set them to an empty string to
-            //ensure that the label appears on all platforms by default.
             this.Title = " ";
             this.Temperature = " ";
             this.Wind = " ";

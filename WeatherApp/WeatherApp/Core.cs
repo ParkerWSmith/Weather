@@ -23,11 +23,11 @@ namespace WeatherApp
                 weather.Humidity = (string)results["main"]["humidity"] + " %";
                 weather.Visibility = (string)results["weather"][0]["main"];
 
-                DateTime time = new System.DateTime(1970, 1, 1, 0, 0, 0, 0);
+                DateTime time = DateTime.Now; 
                 DateTime sunrise = time.AddSeconds((double)results["sys"]["sunrise"]);
                 DateTime sunset = time.AddSeconds((double)results["sys"]["sunset"]);
-                weather.Sunrise = sunrise.ToString() + " UTC";
-                weather.Sunset = sunset.ToString() + " UTC";
+                weather.Sunrise = sunrise.ToString() + " CST";
+                weather.Sunset = sunset.ToString() + " CST";
                 return weather;
             }
             else
